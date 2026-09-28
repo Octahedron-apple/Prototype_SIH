@@ -9,11 +9,40 @@ class App {
     }
 
     init() {
+        this.setupThemeToggle();
         this.setupRouter();
         this.setupNavigation();
         this.setupFileUploads();
         this.setupEventListeners();
         this.fetchDashboardStats();
+    }
+
+    setupThemeToggle() {
+        const toggleBtn = document.getElementById('theme-toggle');
+        const sunIcon = toggleBtn?.querySelector('.sun-icon');
+        const moonIcon = toggleBtn?.querySelector('.moon-icon');
+        
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            if (sunIcon) sunIcon.style.display = 'block';
+            if (moonIcon) moonIcon.style.display = 'none';
+        }
+
+        toggleBtn?.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                if (sunIcon) sunIcon.style.display = 'none';
+                if (moonIcon) moonIcon.style.display = 'block';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                if (sunIcon) sunIcon.style.display = 'block';
+                if (moonIcon) moonIcon.style.display = 'none';
+            }
+        });
     }
 
     // ─── Router & Navigation ──────────────────────────────────────────
@@ -52,12 +81,12 @@ class App {
 
         const titleMap = {
             'dashboard': 'Dashboard',
-            'data-integrity': 'Data Integrity Scanner',
-            'model-integrity': 'Model Integrity Assessor',
-            'inference-provenance': 'Inference Provenance Chain',
-            'distribution-shift': 'Distribution Shift Analyzer',
-            'full-audit': 'Full Integrity Audit',
-            'reports': 'Assurance Reports'
+            'data-integrity': 'Data Integrity',
+            'model-integrity': 'Model Integrity',
+            'inference-provenance': 'Inference Provenance',
+            'distribution-shift': 'Distribution Shift',
+            'full-audit': 'Full Audit',
+            'reports': 'Reports'
         };
         const titleEl = document.getElementById('page-title');
         if (titleEl) {

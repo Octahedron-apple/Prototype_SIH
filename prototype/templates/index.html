@@ -18,7 +18,6 @@
                 </div>
                 <div class="logo-text-group">
                     <span class="logo-title">TCVIA Platform</span>
-                    <span class="logo-subtitle">SIH PS-228 • Enterprise</span>
                 </div>
             </div>
 
@@ -97,29 +96,31 @@
                     <span>Solution Slide (PPT) ↗</span>
                 </a>
             </nav>
-
-            <div class="sidebar-footer">
-                <div class="sidebar-footer-row">
-                    <span class="status-dot green"></span>
-                    <strong>Air-Gapped Node</strong>
-                </div>
-                <div class="sidebar-footer-sub">SHA-256 • HMAC • Zero-Trust</div>
-            </div>
         </aside>
 
         <!-- Main Workspace -->
         <main class="main-content">
             <header class="topbar">
                 <div class="topbar-breadcrumbs">
-                    <span class="breadcrumb-root">Verification Engine</span>
-                    <span class="breadcrumb-sep">/</span>
                     <h1 id="page-title">Dashboard</h1>
                 </div>
                 <div class="topbar-actions">
-                    <div class="status-indicator">
-                        <span class="status-dot green pulse"></span>
-                        <span>Crypto Core Active</span>
-                    </div>
+                    <button class="btn btn-outline" id="theme-toggle" title="Toggle Dark Mode">
+                        <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="moon-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
                     <button class="btn btn-primary" id="btn-run-demo">
                         <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -275,8 +276,7 @@
                 <!-- ========================================================= -->
                 <div class="page" id="page-data-integrity">
                     <div class="page-header">
-                        <h2>Dataset Validation & Poisoning Detection</h2>
-                        <p>Scans CV training sets for corrupted annotations, degenerate bounding boxes, out-of-bounds labels, and perceptual duplicate poisoning.</p>
+                        <h2>Data Integrity</h2>
                     </div>
 
                     <div class="card">
@@ -335,8 +335,7 @@
                 <!-- ========================================================= -->
                 <div class="page" id="page-model-integrity">
                     <div class="page-header">
-                        <h2>Model Weight & Architecture Integrity</h2>
-                        <p>Verifies deep learning model checkpoints against weight poisoning, backdoor implants, zero-weight sparsity anomalies, and architecture tampering.</p>
+                        <h2>Model Integrity</h2>
                     </div>
 
                     <div class="card">
@@ -395,8 +394,7 @@
                 <!-- ========================================================= -->
                 <div class="page" id="page-inference-provenance">
                     <div class="page-header">
-                        <h2>Cryptographic Inference Provenance Chain</h2>
-                        <p>Maintains an immutable hash-chained audit ledger of AI accelerator inputs, model states, prediction outputs, and HMAC signatures.</p>
+                        <h2>Inference Provenance</h2>
                     </div>
 
                     <div class="card">
@@ -427,8 +425,7 @@
                 <!-- ========================================================= -->
                 <div class="page" id="page-distribution-shift">
                     <div class="page-header">
-                        <h2>Distribution Shift & Environmental Drift Analyzer</h2>
-                        <p>Detects sensor degradation, illumination anomalies, camera blur, and adversarial perturbations between reference baseline and incoming telemetry.</p>
+                        <h2>Distribution Shift</h2>
                     </div>
 
                     <div class="card">
@@ -488,8 +485,7 @@
                 <!-- ========================================================= -->
                 <div class="page" id="page-full-audit">
                     <div class="page-header">
-                        <h2>Comprehensive Integrity Audit</h2>
-                        <p>Executes an end-to-end multi-stage verification audit across dataset, model checkpoint, inference chain, and distribution drift.</p>
+                        <h2>Full Audit</h2>
                     </div>
 
                     <div class="card text-center">
@@ -552,8 +548,7 @@
                 <!-- ========================================================= -->
                 <div class="page" id="page-reports">
                     <div class="page-header">
-                        <h2>Assurance Reports & Governance Artifacts</h2>
-                        <p>Review and download cryptographically signed audit reports for defense and compliance verification.</p>
+                        <h2>Reports</h2>
                     </div>
 
                     <div class="card">
