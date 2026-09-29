@@ -1212,3 +1212,40 @@ code {
 .mt-4 { margin-top: 16px; }
 .text-center { text-align: center; }
 .text-muted { color: var(--text-muted); }
+
+/* Sidebar Collapsible Styles */
+.sidebar {
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.layout.sidebar-collapsed .sidebar {
+    width: 0;
+    transform: translateX(-100%);
+}
+
+.main-content {
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.layout.sidebar-collapsed .main-content {
+    margin-left: 0;
+}
+
+/* Mobile Sidebar Toggle */
+@media (max-width: 1024px) {
+    .sidebar {
+        position: fixed;
+        height: 100vh;
+        z-index: 1000;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.1);
+        transform: translateX(-100%);
+    }
+    .layout.sidebar-collapsed .sidebar {
+        transform: translateX(0);
+        width: var(--sidebar-width);
+    }
+    .main-content {
+        margin-left: 0;
+    }
+}

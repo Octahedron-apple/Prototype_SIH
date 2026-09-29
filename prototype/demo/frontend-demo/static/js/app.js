@@ -636,16 +636,76 @@ class App {
                         </span>
                     </td>
                     <td>
-                        <a href="/api/download-report/${r.id}/json" class="btn btn-outline" style="padding:4px 10px;font-size:0.78rem;margin-right:6px">JSON</a>
-                        <a href="/api/download-report/${r.id}/html" target="_blank" class="btn btn-outline" style="padding:4px 10px;font-size:0.78rem">View HTML</a>
+                        <button onclick="window.app.downloadMockReport('${r.id}', 'json')" class="btn btn-outline" style="padding:4px 10px;font-size:0.78rem;margin-right:6px">JSON</button>
+                        <button onclick="window.app.downloadMockReport('${r.id}', 'html')" class="btn btn-outline" style="padding:4px 10px;font-size:0.78rem">View HTML</button>
                     </td>
                 </tr>
             `).join('');
         } catch (e) { /* silent */ }
+    }
+
+    // ─── File Download Mock ───────────────────────────────────────────
+    downloadMockReport(reportId, format) {
+        let content, type, filename;
+        if (format === 'json') {
+            const mockData = { 
+                id: reportId, 
+                generated_at: new Date().toISOString(), 
+                status: "secure",
+                findings: [],
+                message: "This is a dynamically generated mock JSON report."
+            };
+            content = JSON.stringify(mockData, null, 2);
+            type = 'application/json';
+            filename = `${reportId}.json`;
+        } else {
+            content = `
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audit Report: ${reportId}</title>
+    <style>body { font-family: system-ui, sans-serif; padding: 40px; line-height: 1.6; } h1 { color: #2563eb; } .secure { color: #16a34a; font-weight: bold; }</style>
+</head>
+<body>
+    <h1>Audit Report: ${reportId}</h1>
+    <p>Status: <span class="secure">Secure - No vulnerabilities detected</span></p>
+    <p>Generated at: ${new Date().toLocaleString()}</p>
+    <p><em>This is a dynamically generated mock HTML report.</em></p>
+</body>
+</html>`;
+            type = 'text/html';
+            filename = `${reportId}.html`;
+        }
+        
+        const blob = new Blob([content], { type });
+        const url = URL.createObjectURL(blob);
+        
+        if (format === 'html') {
+            window.open(url, '_blank');
+        } else {
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+        
+        // Cleanup after a short delay
+        setTimeout(() => URL.revokeObjectURL(url), 100);
     }
 }
 
 // Initialize application on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
     window.app = new App();
+    
+    // Sidebar toggle functionality
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebarToggle && sidebar) {
+        sidebarToggle.addEventListener('click', () => {
+            document.querySelector('.layout').classList.toggle('sidebar-collapsed');
+        });
+    }
 });
